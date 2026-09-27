@@ -4,8 +4,8 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-@onready var ap = $AnimationPlayer
-@onready var sprite = $Sprite2D
+#@onready var ap = $AnimationPlayer
+@onready var sprite = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 @onready var hitbox_shape = $attackbox/CollisionShape2D
 var pshell
@@ -14,6 +14,7 @@ var enemyinattackrange: bool = false
 var hit: bool = false
 var pikedout: bool = false
 var pikedonwall: bool = false
+
 var enemy
 
 
@@ -23,8 +24,18 @@ func _ready() -> void:
 	pshell = jumpshell.new()
 	
 func _process(delta: float) -> void:
-	if pshell.has_method("get_shell_type") and Input.is_action_just_pressed("ui_accept") and pshell.type == "blue" and enemyinattackrange:
-		attack()
+	
+	if pshell.has_method("get_shell_type") and Input.is_action_pressed("ui_accept") and pshell.type == "blue" and not attacking:
+		
+		attacking = true
+		sprite.play("attack")
+		
+		if enemyinattackrange:
+			attack()
+			
+		await sprite.animation_finished
+		attacking = false
+
 	if pshell.has_method("get_shell_type") and Input.is_action_just_pressed("ui_accept") and pshell.type == "pike" and pikedout and not pikedonwall:
 		pikedout = false;
 		print("pikeup")
@@ -43,7 +54,10 @@ func wall_jump_h() -> void:
 			pikedonwall = false
 			
 func attack():
+	
 	print("attack!")
+	attacking = true
+
 	enemy.die()
 
 
@@ -54,6 +68,11 @@ func _on_action_completed() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	if attacking:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		move_and_slide()
+		return # Skip the rest of the movement/animation code while attacking
+
 	wallslide(delta)
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -67,12 +86,55 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
+	if direction and hit:
+		sprite.play("hitwalk")
 		velocity.x = direction * SPEED
+
+	else: if hit:
+
+		sprite.play("hitidle")
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "jump":
+		sprite.play("walk")
+		velocity.x = direction * SPEED
+	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "blue":
+		sprite.play("bluewalk")
+		velocity.x = direction * SPEED
+	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "pike":
+		sprite.play("pikewalk")
+		velocity.x = direction * SPEED
+		
+	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "pike" and pikedout:
+		sprite.play("pikeoutwalk")
+		velocity.x = direction * SPEED
+	else: if pshell.has_method("get_shell_type") and pshell.type == "pike" and pikedout:
+		sprite.play("pikeoutidle")
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "turtle":
+		sprite.play("turtlewalk")
+		velocity.x = direction * SPEED
+	else: if pshell.has_method("get_shell_type") and pshell.type == "blue":
+		sprite.play("blueidle")
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	else: if pshell.has_method("get_shell_type") and pshell.type == "pike":
+		sprite.play("pikeidle")
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	else: if pshell.has_method("get_shell_type") and pshell.type == "turtle":
+		sprite.play("turtleidle")
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
 	else:
+		sprite.play("idle")
+
+		
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 	if(direction != 0):
+		
 		sprite.flip_h = (direction == -1)
 		
 	move_and_slide()
@@ -122,10 +184,10 @@ func wallslide(delt: float) -> void:
 			
 			#if piking_into_wall:
 			print("pikedonwal")
+			
 			pikedonwall = true
 			if velocity.y > 0:
 				velocity.y = min(velocity.y, 14)
-
 
 
 func _on_attackbox_body_exited(body: Node2D) -> void:
@@ -133,3 +195,9 @@ func _on_attackbox_body_exited(body: Node2D) -> void:
 	if  body.has_method("die"):
 		print("enemyoutofrange");
 		enemyinattackrange = false
+
+
+func _on_animated_sprite_2d_animation_looped() -> void:
+	if sprite.animation == "attack":
+		print("idk")
+		attacking = false
