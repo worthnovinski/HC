@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://d1ebug0st008b"]
+
+[ext_resource type="Texture2D" uid="uid://xyv32xot03tv" path="res://pixil-frame-0-83.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://doqkp8p6jmxdb" path="res://scripts/player.gd" id="1_g2els"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eh0kw"]
+size = Vector2(159, 109)
+
+[sub_resource type="Animation" id="Animation_g2els"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_3vyb7")]
+}
+
+[sub_resource type="Animation" id="Animation_qhqgy"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_3vyb7")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
+_data = {
+&"RESET": SubResource("Animation_g2els"),
+&"walk": SubResource("Animation_qhqgy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uarf0"]
+size = Vector2(336, 109)
+
+[node name="Herman" type="CharacterBody2D" unique_id=1547974713 groups=["player"]]
+collision_layer = 3
+collision_mask = 5
+script = ExtResource("1_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1136256055]
+position = Vector2(0, -65)
+texture = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2052637148]
+position = Vector2(13.5, -55)
+shape = SubResource("RectangleShape2D_eh0kw")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1769640216]
+position = Vector2(1, -50)
+zoom = Vector2(2.5, 2.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=41201885]
+libraries/ = SubResource("AnimationLibrary_dqkch")
+
+[node name="Timer" type="Timer" parent="." unique_id=641773330]
+
+[node name="attackbox" type="Area2D" parent="." unique_id=1772812403]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackbox" unique_id=1523807308]
+position = Vector2(3, -55.5)
+shape = SubResource("RectangleShape2D_uarf0")
+
+[connection signal="body_entered" from="attackbox" to="." method="_on_attackbox_body_entered"]
+[connection signal="body_exited" from="attackbox" to="." method="_on_attackbox_body_exited"]

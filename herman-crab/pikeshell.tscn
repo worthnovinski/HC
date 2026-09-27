@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c7mx7sn7fytrm"]
+
+[ext_resource type="Script" uid="uid://dv7wwq15geaus" path="res://pikeshell.gd" id="1_cvn1m"]
+[ext_resource type="PackedScene" uid="uid://b5sgjo6k00lmd" path="res://Interactable2D.tscn" id="2_cvn1m"]
+[ext_resource type="Texture2D" uid="uid://cue1ldlhorr2l" path="res://pixil-frame-0-108.png" id="2_f4y16"]
+
+[node name="Node2D" type="Node2D" unique_id=1098573068]
+script = ExtResource("1_cvn1m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1858229999]
+position = Vector2(0, -32)
+scale = Vector2(2.3125, 2.3125)
+texture = ExtResource("2_f4y16")
+
+[node name="Area2D" parent="." unique_id=3284945 instance=ExtResource("2_cvn1m")]
+
+[connection signal="interact" from="Area2D" to="." method="_on_area_2d_interact"]

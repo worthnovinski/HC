@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c63aqc2k5jc3h"]
+
+[ext_resource type="Script" uid="uid://c65087bqvdkri" path="res://movableblock.gd" id="1_m3ydk"]
+[ext_resource type="Texture2D" uid="uid://cajutkf5gx1tv" path="res://pixil-frame-0-104.png" id="1_sjf3q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uarf0"]
+size = Vector2(14, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2okd"]
+size = Vector2(26.785713, 2.8571434)
+
+[node name="Node2D" type="Node2D" unique_id=701215363]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1616505326]
+scale = Vector2(0.56, 0.56)
+gravity_scale = 2.5
+lock_rotation = true
+linear_damp = 15.0
+script = ExtResource("1_m3ydk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" unique_id=2021973222]
+position = Vector2(-1.7857143, 0)
+scale = Vector2(1.7857143, 1.7857143)
+shape = SubResource("RectangleShape2D_uarf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=1216470999]
+scale = Vector2(0.49999997, 0.48291922)
+texture = ExtResource("1_sjf3q")
+
+[node name="blockbottom" type="Area2D" parent="RigidBody2D" unique_id=849618536]
+collision_layer = 16
+collision_mask = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/blockbottom" unique_id=99751593]
+position = Vector2(-0.892857, 17.499998)
+shape = SubResource("RectangleShape2D_f2okd")
+
+[connection signal="body_entered" from="RigidBody2D/blockbottom" to="RigidBody2D" method="_on_blockbottom_body_entered"]
