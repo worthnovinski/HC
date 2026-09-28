@@ -23,7 +23,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if in_range and event.is_action_pressed("interact"):
 		interact.emit()
 		#body_entered.connect(_activate_Shell)
+		
 		bum.new_shell(get_parent())
+		queue_free()
+		
+		
 
 func _on_range(body: Node2D) -> void:
 	if body.is_in_group("player"):

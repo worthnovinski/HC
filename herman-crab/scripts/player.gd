@@ -14,6 +14,10 @@ var enemyinattackrange: bool = false
 var hit: bool = false
 var pikedout: bool = false
 var pikedonwall: bool = false
+var blueshel = preload("res://blueshell.tscn")
+var jumpshel = preload("res://jumpshell.tscn")
+var turtleshel = preload("res://turtleshell.tscn")
+var pikeshel = preload("res://pikeshell.tscn")
 
 var enemy
 
@@ -25,7 +29,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	
-	if pshell.has_method("get_shell_type") and Input.is_action_pressed("ui_accept") and pshell.type == "blue" and not attacking:
+	if pshell.has_method("get_shell_type") and Input.is_action_pressed("ui_accept") and pshell.type == "blue" and not attacking and not hit:
 		
 		attacking = true
 		sprite.play("attack")
@@ -101,7 +105,7 @@ func _physics_process(delta: float) -> void:
 	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "blue":
 		sprite.play("bluewalk")
 		velocity.x = direction * SPEED
-	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "pike":
+	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "pike" and not pikedout:
 		sprite.play("pikewalk")
 		velocity.x = direction * SPEED
 		
@@ -164,7 +168,17 @@ func new_shell(pshoill):
 	if not timer.is_stopped():
 		timer.stop()
 		hit = false
+	if pshell.has_method("get_shell_type") and pshell.type == "turtle":
+		turtleshel.instantiate()
+	else: if pshell.has_method("get_shell_type") and pshell.type == "blue":
+		blueshel.instantiate()
+	else: if pshell.has_method("get_shell_type") and pshell.type == "pike":
+		pikeshel.instantiate()
+	else:
+		jumpshel.instantiate()
+
 	pshell = pshoill
+	
 	
 func update_animations(direction):
 		pass
