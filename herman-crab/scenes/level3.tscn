@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c1q87vs4ie8xj"]
+
+[ext_resource type="PackedScene" uid="uid://d1ebug0st008b" path="res://scenes/player.tscn" id="1_f0ip2"]
+[ext_resource type="Texture2D" uid="uid://1gq5ekbs1h0m" path="res://pixil-frame-0-105.png" id="2_yesqi"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_qyetb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yesqi"]
+size = Vector2(241, 51)
+
+[node name="Node2D" type="Node2D" unique_id=797676158]
+
+[node name="Herman" parent="." unique_id=1547974713 instance=ExtResource("1_f0ip2")]
+scale = Vector2(0.3, 0.3)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Herman" unique_id=1605477080]
+position = Vector2(-23.333328, 90.00001)
+scale = Vector2(803.33344, 173.21877)
+mesh = SubResource("QuadMesh_qyetb")
+texture = ExtResource("2_yesqi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1200207983]
+position = Vector2(-7.5, 27.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1365467030]
+shape = SubResource("RectangleShape2D_yesqi")

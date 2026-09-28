@@ -1,18 +1,18 @@
-[gd_scene format=3 uid="uid://bo1axf1qhg6nj"]
+[gd_scene format=3 uid="uid://bw4qaj66qxv3k"]
 
-[ext_resource type="Script" uid="uid://cnmtpajpmcl03" path="res://win.gd" id="1_hgi8f"]
-[ext_resource type="Texture2D" uid="uid://cwivaiah5cq52" path="res://pixil-frame-0-128.png" id="1_wao2c"]
+[ext_resource type="Script" uid="uid://cri32k7w7bhug" path="res://wint.gd" id="1_4kwf5"]
+[ext_resource type="Texture2D" uid="uid://cwivaiah5cq52" path="res://pixil-frame-0-128.png" id="2_86ctc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uarf0"]
 size = Vector2(34, 33)
 
 [node name="Node2D" type="Node2D" unique_id=1443142739]
-script = ExtResource("1_hgi8f")
+script = ExtResource("1_4kwf5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=294358546]
 position = Vector2(1, 0.5)
 scale = Vector2(0.265625, 0.2578125)
-texture = ExtResource("1_wao2c")
+texture = ExtResource("2_86ctc")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1156511482]
 collision_layer = 128

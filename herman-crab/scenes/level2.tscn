@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c3vdiytp2drio" path="res://spikes.tscn" id="10_s4es8"]
 [ext_resource type="PackedScene" uid="uid://c7mx7sn7fytrm" path="res://pikeshell.tscn" id="11_63e4f"]
 [ext_resource type="PackedScene" uid="uid://fwa4qv1bm6yu" path="res://turtleshell.tscn" id="12_y6lc1"]
-[ext_resource type="PackedScene" uid="uid://bo1axf1qhg6nj" path="res://win.tscn" id="13_56gwk"]
+[ext_resource type="PackedScene" uid="uid://bw4qaj66qxv3k" path="res://wint.tscn" id="13_56gwk"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_8tcn8"]
 
@@ -245,6 +245,5 @@ scale = Vector2(0.3, 0.3)
 position = Vector2(422, 758)
 scale = Vector2(0.3, 0.3)
 
-[node name="Node2D8" parent="." unique_id=1648554444 instance=ExtResource("13_56gwk")]
-position = Vector2(428, 744)
-scale = Vector2(0.2, 0.2)
+[node name="Node2D8" parent="." unique_id=323799411 instance=ExtResource("13_56gwk")]
+position = Vector2(371, 737)

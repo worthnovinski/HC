@@ -14,6 +14,8 @@ var enemyinattackrange: bool = false
 var hit: bool = false
 var pikedout: bool = false
 var pikedonwall: bool = false
+var inshell: bool = false
+
 var blueshel = preload("res://blueshell.tscn")
 var jumpshel = preload("res://jumpshell.tscn")
 var turtleshel = preload("res://turtleshell.tscn")
@@ -28,6 +30,8 @@ func _ready() -> void:
 	pshell = jumpshell.new()
 	
 func _process(delta: float) -> void:
+
+
 	
 	if pshell.has_method("get_shell_type") and Input.is_action_pressed("ui_accept") and pshell.type == "blue" and not attacking and not hit:
 		
@@ -74,6 +78,7 @@ func _on_action_completed() -> void:
 func _physics_process(delta: float) -> void:
 	if attacking:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
 		move_and_slide()
 		return # Skip the rest of the movement/animation code while attacking
 
@@ -83,6 +88,9 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("ui_accept") and pshell.has_method("get_shell_type") and pshell.type == "turtle":
 		velocity = Vector2.ZERO
+		inshell = true
+		sprite.play("entershell")
+		sprite.play("shellidle")
 		return
 	
 
@@ -102,6 +110,8 @@ func _physics_process(delta: float) -> void:
 	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "jump":
 		sprite.play("walk")
 		velocity.x = direction * SPEED
+
+
 	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "blue":
 		sprite.play("bluewalk")
 		velocity.x = direction * SPEED
