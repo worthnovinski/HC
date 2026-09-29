@@ -675,7 +675,7 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1212846247]
 position = Vector2(20, -64)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
-animation = &"inshell"
+animation = &"entershell"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2052637148]
 position = Vector2(13.5, -55)

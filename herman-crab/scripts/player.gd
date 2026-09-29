@@ -31,6 +31,16 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 
+	if pshell.has_method("get_shell_type") and Input.is_action_just_pressed("ui_accept") and pshell.type == "turtle" and not inshell and not hit:
+		
+		sprite.play("entershell")
+		
+		inshell = true
+	else: if pshell.has_method("get_shell_type") and Input.is_action_just_pressed("ui_accept") and pshell.type == "turtle" and inshell and not hit:
+		
+		sprite.play("exitshell")
+		
+		inshell = false
 
 	
 	if pshell.has_method("get_shell_type") and Input.is_action_pressed("ui_accept") and pshell.type == "blue" and not attacking and not hit:
@@ -88,9 +98,7 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("ui_accept") and pshell.has_method("get_shell_type") and pshell.type == "turtle":
 		velocity = Vector2.ZERO
-		inshell = true
-		sprite.play("entershell")
-		sprite.play("shellidle")
+
 		return
 	
 
@@ -105,6 +113,15 @@ func _physics_process(delta: float) -> void:
 	else: if hit:
 
 		sprite.play("hitidle")
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	else: if sprite.animation == "entershell" or sprite.animation == "exitshell":
+		if sprite.is_playing():
+			pass 
+		else:
+			
+			sprite.play("inshell" if inshell else "turtleidle")
+	else: if pshell.type == "turtle" and inshell:
+		sprite.play("inshell")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	else: if direction and pshell.has_method("get_shell_type") and pshell.type == "jump":
@@ -225,3 +242,8 @@ func _on_animated_sprite_2d_animation_looped() -> void:
 	if sprite.animation == "attack":
 		print("idk")
 		attacking = false
+		
+	if sprite.animation == "entershell":
+		sprite.play("inshell")
+	elif sprite.animation == "exitshell":
+		sprite.play("turtleidle")

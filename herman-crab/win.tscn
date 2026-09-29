@@ -7,6 +7,7 @@
 size = Vector2(34, 33)
 
 [node name="Node2D" type="Node2D" unique_id=1443142739]
+scale = Vector2(4, 4)
 script = ExtResource("1_hgi8f")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=294358546]

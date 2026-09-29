@@ -25,6 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		#body_entered.connect(_activate_Shell)
 		
 		bum.new_shell(get_parent())
+		get_parent().find_child("Sprite2D").hide()
 		queue_free()
 		
 		

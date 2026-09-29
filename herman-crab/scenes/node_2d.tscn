@@ -134,7 +134,7 @@ scale = Vector2(0.99932474, 1.0130508)
 shape = SubResource("RectangleShape2D_4dvvg")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D" unique_id=45337069]
-position = Vector2(1166.0001, 446)
+position = Vector2(1174, 446)
 scale = Vector2(0.99932474, 1.0130508)
 shape = SubResource("RectangleShape2D_4dvvg")
 
@@ -189,6 +189,10 @@ texture = ExtResource("3_4vge2")
 position = Vector2(930, 343)
 scale = Vector2(0.5, 0.5)
 
+[node name="Node2D11" parent="." unique_id=1924428893 instance=ExtResource("3_rnjyy")]
+position = Vector2(1033, 342)
+scale = Vector2(0.5, 0.5)
+
 [node name="Node2D5" parent="." unique_id=1618575335 instance=ExtResource("3_rnjyy")]
 position = Vector2(251, 62)
 scale = Vector2(0.5, 0.5)
@@ -221,4 +225,4 @@ scale = Vector2(0.5, 0.5)
 
 [node name="Node2D6" parent="." unique_id=1871815332 instance=ExtResource("15_xtx0q")]
 position = Vector2(1060, 409)
-scale = Vector2(0.2, 0.2)
+scale = Vector2(1, 1)
