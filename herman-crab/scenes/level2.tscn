@@ -24,7 +24,7 @@ size = Vector2(320, 68)
 [sub_resource type="QuadMesh" id="QuadMesh_qulpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uarf0"]
-size = Vector2(37, 326.625)
+size = Vector2(37, 320.3125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2okd"]
 size = Vector2(642.5, 43)
@@ -88,7 +88,7 @@ mesh = SubResource("QuadMesh_r6vdu")
 texture = ExtResource("5_wvb8j")
 
 [node name="MeshInstance2D17" type="MeshInstance2D" parent="StaticBody2D" unique_id=683416824]
-position = Vector2(633, 540)
+position = Vector2(635, 534.00006)
 rotation = -1.5707964
 scale = Vector2(320, 69)
 mesh = SubResource("QuadMesh_r6vdu")
@@ -107,7 +107,13 @@ mesh = SubResource("QuadMesh_r6vdu")
 texture = ExtResource("5_wvb8j")
 
 [node name="MeshInstance2D4" type="MeshInstance2D" parent="StaticBody2D" unique_id=178532926]
-position = Vector2(511, 359.00003)
+position = Vector2(472.00003, 360)
+scale = Vector2(320, 69)
+mesh = SubResource("QuadMesh_r6vdu")
+texture = ExtResource("5_wvb8j")
+
+[node name="MeshInstance2D18" type="MeshInstance2D" parent="StaticBody2D" unique_id=979825760]
+position = Vector2(511.00003, 266)
 scale = Vector2(320, 69)
 mesh = SubResource("QuadMesh_r6vdu")
 texture = ExtResource("5_wvb8j")
@@ -121,7 +127,11 @@ position = Vector2(342, 362)
 shape = SubResource("RectangleShape2D_eh0kw")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1315450666]
-position = Vector2(510, 360)
+position = Vector2(510, 265)
+shape = SubResource("RectangleShape2D_eh0kw")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="StaticBody2D" unique_id=400470087]
+position = Vector2(471, 360)
 shape = SubResource("RectangleShape2D_eh0kw")
 
 [node name="MeshInstance2D5" type="MeshInstance2D" parent="StaticBody2D" unique_id=141280253]
@@ -185,7 +195,7 @@ position = Vector2(577, 116)
 shape = SubResource("RectangleShape2D_uarf0")
 
 [node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody2D" unique_id=280862573]
-position = Vector2(652, 538)
+position = Vector2(652, 541.15625)
 shape = SubResource("RectangleShape2D_uarf0")
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="StaticBody2D" unique_id=201626674]
@@ -263,7 +273,7 @@ position = Vector2(-53, 751)
 shape = SubResource("RectangleShape2D_siov1")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D" unique_id=952220846]
-position = Vector2(914, 424)
+position = Vector2(913, 430)
 shape = SubResource("RectangleShape2D_siov1")
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D" unique_id=1154910785]
@@ -283,10 +293,27 @@ position = Vector2(304, 61)
 position = Vector2(236, 311)
 
 [node name="Node2D6" parent="." unique_id=1229585199 instance=ExtResource("10_s4es8")]
-position = Vector2(128, 742)
+position = Vector2(126, 750)
 
 [node name="Node2D10" parent="." unique_id=516488907 instance=ExtResource("10_s4es8")]
-position = Vector2(712, 885)
+position = Vector2(711, 902)
+
+[node name="Node2D14" parent="." unique_id=1738993391 instance=ExtResource("10_s4es8")]
+position = Vector2(247, 509)
+rotation = -1.5550884
+
+[node name="Node2D16" parent="." unique_id=629916531 instance=ExtResource("10_s4es8")]
+position = Vector2(653, 315)
+rotation = 3.1415927
+
+[node name="Node2D15" parent="." unique_id=774050418 instance=ExtResource("10_s4es8")]
+position = Vector2(1295, 369)
+
+[node name="Node2D12" parent="." unique_id=1727625708 instance=ExtResource("10_s4es8")]
+position = Vector2(686, 889)
+
+[node name="Node2D13" parent="." unique_id=577227922 instance=ExtResource("10_s4es8")]
+position = Vector2(737, 887)
 
 [node name="Node2D4" parent="." unique_id=665742488 instance=ExtResource("10_s4es8")]
 position = Vector2(506, 186)
@@ -308,4 +335,4 @@ position = Vector2(474, 756)
 scale = Vector2(0.3, 0.3)
 
 [node name="Node2D8" parent="." unique_id=323799411 instance=ExtResource("13_56gwk")]
-position = Vector2(632, 305)
+position = Vector2(756, 240)
