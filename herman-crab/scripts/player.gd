@@ -180,7 +180,7 @@ func _physics_process(delta: float) -> void:
 	update_animations(direction)
 	
 func take_hit():
-	if Input.is_action_pressed("ui_accept") and pshell.has_method("get_shell_type") and pshell.type == "turtle":
+	if inshell and pshell.has_method("get_shell_type") and pshell.type == "turtle":
 		print("crabblocked")
 	
 	else: if not hit:
