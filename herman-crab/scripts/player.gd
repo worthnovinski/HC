@@ -195,14 +195,24 @@ func new_shell(pshoill):
 	if not timer.is_stopped():
 		timer.stop()
 		hit = false
-	if pshell.has_method("get_shell_type") and pshell.type == "turtle":
-		turtleshel.instantiate()
-	else: if pshell.has_method("get_shell_type") and pshell.type == "blue":
-		blueshel.instantiate()
-	else: if pshell.has_method("get_shell_type") and pshell.type == "pike":
-		pikeshel.instantiate()
+		
+	var dropped_shell_instance: Node2D = null
+
+	var shell_type = pshell.type if pshell.has_method("get_shell_type") else ""
+	
+	if shell_type == "turtle":
+		dropped_shell_instance = turtleshel.instantiate()
+	elif shell_type == "blue":
+		dropped_shell_instance = blueshel.instantiate()
+	elif shell_type == "pike":
+		dropped_shell_instance = pikeshel.instantiate()
 	else:
-		jumpshel.instantiate()
+		dropped_shell_instance = jumpshel.instantiate()
+
+	if dropped_shell_instance:
+		dropped_shell_instance.scale = Vector2(0.5, 0.5)
+		get_parent().add_child(dropped_shell_instance)
+		dropped_shell_instance.global_position = global_position
 
 	pshell = pshoill
 	
